@@ -1,0 +1,10 @@
+/var/log/mikrosoc/app.log {
+    daily
+    rotate 7
+    size 10M
+    compress
+    missingok
+    notifempty
+    copytruncate
+    su mikrosoc mikrosoc
+}

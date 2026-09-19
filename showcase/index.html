@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MikroSOC | Interactive demo</title><meta name="description" content="Explore MikroSOC network monitoring and incident response using synthetic data. No account or router required."><meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'"><link rel="stylesheet" href="./style.css"><script src="./demo-data.js" defer></script><script src="./app.js" defer></script></head>
+<body>
+<div id="login" hidden></div>
+<div id="shell" hidden>
+  <aside><div class="brand"><span class="brand-icon">M</span> MikroSOC</div><div class="sidebar-label">WORKSPACE</div><nav aria-label="Main navigation">
+    <button data-page="overview" class="nav-item active">◉ <span>Overview</span></button>
+    <button data-page="alerts" class="nav-item">◇ <span>Security alerts</span></button>
+    <button data-page="incidents" class="nav-item">▤ <span>Incidents</span></button>
+    <button data-page="devices" class="nav-item">▦ <span>Devices</span></button>
+    <button data-page="logs" class="nav-item">≡ <span>Live logs</span></button>
+    <button data-page="rules" class="nav-item">⚙ <span>Detection rules</span></button>
+    <button data-page="reports" class="nav-item">↓ <span>Reports</span></button>
+    <button data-page="audit" class="nav-item admin-only">▧ <span>Audit trail</span></button>
+  </nav><div class="sidebar-bottom"><span class="status-dot"></span> Browser demo<br><small id="organization"></small></div></aside>
+  <div class="workspace"><header><div><span class="breadcrumb">Workspace / </span><span id="breadcrumb">Overview</span></div><div class="header-right"><span id="mode" class="pill"></span><span id="username"></span><button id="account" class="quiet">Reset demo</button><a class="quiet" href="https://github.com/monsurhadi/MikroSOC" target="_blank" rel="noopener noreferrer">Source code ↗</a></div></header>
+    <main><div class="page-heading"><div><p class="eyebrow">MIKROTIK OPERATIONS</p><h1 id="page-title">Network overview</h1><p id="page-subtitle">A live view of network health and security activity.</p></div><button id="refresh" class="secondary">↻ Refresh</button></div>
+    <div id="notice" class="notice" hidden></div><div id="error" class="error" role="alert" hidden></div><div id="content"></div><noscript>This demo requires JavaScript. Enable JavaScript to explore the dashboard.</noscript>
+    <footer><span id="updated">Waiting for data</span><span>Synthetic data · MikroSOC showcase</span></footer></main>
+  </div>
+</div>
+<dialog id="modal"><div class="modal-heading"><h2 id="modal-title"></h2><button id="close-modal" class="quiet" aria-label="Close dialog">✕</button></div><div id="modal-body"></div></dialog>
+</body></html>

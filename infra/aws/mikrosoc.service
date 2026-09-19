@@ -1,0 +1,27 @@
+[Unit]
+Description=MikroSOC monitoring and incident dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mikrosoc
+Group=mikrosoc
+WorkingDirectory=/opt/mikrosoc/app
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+EnvironmentFile=/etc/mikrosoc.env
+ExecStart=/opt/mikrosoc/app/.venv/bin/python manage.py run
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/opt/mikrosoc/app/data /var/log/mikrosoc
+UMask=0077
+StandardOutput=append:/var/log/mikrosoc/app.log
+StandardError=append:/var/log/mikrosoc/app.log
+
+[Install]
+WantedBy=multi-user.target
