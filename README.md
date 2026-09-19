@@ -32,13 +32,13 @@ In the public showcase you can acknowledge alerts, edit incidents, review device
 
 | Phase | Implemented capability |
 | --- | --- |
-| 1 Network monitoring | CPU, memory, uptime, WAN upload/download history, interface status, DHCP device inventory, syslog search, password login |
-| 1 Cloud path | Terraform VPC/EC2/IAM/S3/CloudWatch infrastructure, systemd service, outbound PC relay through AWS Session Manager |
-| 2 Detection | Port scanning, failed logins, possible SSH username enumeration, new DHCP devices, sustained WAN upload anomalies |
-| 2 Operations | Severity, alert acknowledgement, incident stages, assignees, investigation notes, CSV reporting, device trust labels |
-| 2 Response | Preview commands, optional administrator-confirmed one-hour source blocking, per-incident unblock, audit history |
-| 2 Access | Admin, analyst and viewer roles; user creation/disable/role changes; password changes and CLI recovery |
-| 2 Optional integrations | SMTP STARTTLS email alerts with retries; offline CIDR country/ASN/reputation enrichment |
+| Network monitoring | CPU, memory, uptime, WAN upload/download history, interface status, DHCP device inventory, syslog search, password login |
+| Cloud path | Terraform VPC/EC2/IAM/S3/CloudWatch infrastructure, systemd service, outbound PC relay through AWS Session Manager |
+| Detection | Port scanning, failed logins, possible SSH username enumeration, new DHCP devices, sustained WAN upload anomalies |
+| Operations | Severity, alert acknowledgement, incident stages, assignees, investigation notes, CSV reporting, device trust labels |
+| Response | Preview commands, optional administrator-confirmed one-hour source blocking, per-incident unblock, audit history |
+| Access | Admin, analyst and viewer roles; user creation/disable/role changes; password changes and CLI recovery |
+| Optional integrations | SMTP STARTTLS email alerts with retries; offline CIDR country/ASN/reputation enrichment |
 
 The implementation is intentionally **one router and one organization per instance**. You can run separate instances with separate databases and ports. A shared multi-router tenancy UI, SNMP polling, automatic external GeoIP/AbuseIPDB queries, OpenSearch and packet inspection are not implemented. API polling provides the NOC metrics in this release. The earlier planning notes list alternatives and future options; they are not all required dependencies.
 
@@ -150,12 +150,6 @@ Local and cloud run the same application. Router credentials remain on the PC. T
 Stack: Python, Flask, Waitress, SQLite, plain JavaScript/CSS and SVG charts. No Node build step, Docker, database server or paid threat-intelligence account is needed. The implementation uses structured RouterOS API words rather than shell commands.
 
 The local UI is refreshed every 15 seconds; router polling defaults to 60 seconds. Those are distinct intervals. Start only **one application process per database and syslog port**. Multiple WSGI worker processes would duplicate collection and detection and are not supported.
-
-## Cost and scope
-
-Local software has no subscription fees; you supply the PC, router, electricity and Internet connection. AWS is optional and billable outside the credits/limits applicable to your account. The package does not promise perpetual free EC2, public IPv4, storage or CloudWatch. No cloud resources have been created by this project build.
-
-This is a functional lab/portfolio platform, not a replacement for a staffed SOC or a production SIEM. UDP logs can be lost or spoofed on a trusted LAN; sampled logs and DHCP snapshots have blind spots. Physical-router acceptance and AWS deployment are steps you perform using the included guide.
 
 ## Demo and live deployment reminder
 
